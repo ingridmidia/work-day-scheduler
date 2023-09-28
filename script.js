@@ -7,7 +7,7 @@ $(function () {
     var description = $(this).siblings(".description").val();// gets the value of button's sibling description
     var timeBlock = $(this).parent().attr("id");// gets the id of button's parent time block
 
-    var newAppointment = { // object that will appointment time and user description
+    var newAppointment = { // object that will store appointment time and user description
       hour: timeBlock,
       description: description,
     }
@@ -27,5 +27,17 @@ $(function () {
 
     localStorage.setItem("appointments", JSON.stringify(appointments));// set the object appointments as a string on localStorage
   });
+
+  function renderAppointments() {
+    for (var i = 0; i < appointments.length; i++) {
+      var timeBlockId = appointments[i].hour;
+      var descriptionText = appointments[i].description;
+      // looks for id that matches the appointment hour then adds description text to textarea
+      $("#" + timeBlockId).children().eq(1).text(descriptionText);
+    }
+  };
+
+  renderAppointments();
+
 });
 
