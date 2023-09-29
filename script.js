@@ -39,5 +39,21 @@ $(function () {
 
   renderAppointments();
 
+  function showColoredTime() {
+    var currentHour = dayjs().format("H");// gets the current hour in 24 hour format
+
+    $(".time-block").each(function () {
+      // gets the id of each time block to compare with current hour
+      if ($(this).attr("id") === currentHour) {
+        $(this).addClass("present");
+      } else if ($(this).attr("id") < currentHour) {
+        $(this).addClass("past");
+      } else {
+        $(this).addClass("future");
+      }
+    });
+  }
+
+  showColoredTime();
 });
 
