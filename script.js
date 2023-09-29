@@ -6,6 +6,11 @@ $(function () {
   $(".btn").on("click", function () {
     var description = $(this).siblings(".description").val();// gets the value of button's sibling description
     var timeBlock = $(this).parent().attr("id");// gets the id of button's parent time block
+    
+    $("#appointment-message").css("visibility", "visible");
+    setTimeout(function () { // message will be displayed for 2.5 seconds
+      $("#appointment-message").css("visibility", "hidden");
+    }, 2500);
 
     var newAppointment = { // object that will store appointment time and user description
       hour: timeBlock,
